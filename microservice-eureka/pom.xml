@@ -5,12 +5,10 @@
 	<parent>
 		<groupId>com.ochain</groupId>
 		<artifactId>base</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>${base.version}</version>
 	</parent>
-	<groupId>com.ochain</groupId>
 	<artifactId>microservice-eureka</artifactId>
 	<!-- 开发版本  -->
-	<version>0.0.1-SNAPSHOT</version>
 	<!-- 正式版本  
 	<version>0.0.1-RELEASE</version>
 	-->
