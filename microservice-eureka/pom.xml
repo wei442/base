@@ -15,6 +15,17 @@
 	<name>microservice-eureka</name>
 
     <dependencies>
+		<!-- spring boot start -->
+   		<!--表示为web工程-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!--暴露各种指标-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
 		<!-- 安全 -->
     	<dependency>  
 		 	<groupId>org.springframework.boot</groupId>
