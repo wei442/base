@@ -2,11 +2,11 @@ package com.cloud.provider.redis.rest.request;
 
 import java.util.Map;
 
-import com.cloud.provider.redis.boot.BootRestRequest;
+import com.cloud.provider.redis.base.BaseRestRequest;
 
 import redis.clients.jedis.GeoCoordinate;
 
-public class RedisRequest extends BootRestRequest {
+public class RedisRequest extends BaseRestRequest {
 
 	private static final long serialVersionUID = 1L;
 
@@ -472,12 +472,10 @@ public class RedisRequest extends BootRestRequest {
 		this.string = string;
 	}
 
-	@Override
 	public String getChannel() {
 		return this.channel;
 	}
 
-	@Override
 	public void setChannel(String channel) {
 		this.channel = channel;
 	}

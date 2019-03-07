@@ -11,7 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import com.ochain.common.exception.BootServiceException;
+import com.cloud.provider.redis.exception.RedisException;
 
 @Component
 @Aspect
@@ -23,7 +23,7 @@ public class ControllerParamAspectj {
 //	@Autowired
 //	private ObjectMapper objectMapper;
 
-	@Around("execution(* com.ochain.provider.redis.controllers.*.*(..))")
+	@Around("execution(* com.cloud.provider.redis.controller.*.*(..))")
 	public Object myAroundAdvice(ProceedingJoinPoint pjp) throws Throwable {
 
 		long begintime = System.currentTimeMillis();
@@ -42,7 +42,7 @@ public class ControllerParamAspectj {
 		Object result = null;
 		try {
 			result = pjp.proceed(objs);
-		} catch(BootServiceException e) {
+		} catch(RedisException e) {
 			logger.error("Exception ErrorCode :" + e.getErrorCode());
 			logger.error("Exception Message :" + e.getMessage());
 		}

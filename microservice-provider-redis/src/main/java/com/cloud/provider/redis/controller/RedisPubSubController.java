@@ -1,4 +1,4 @@
-package com.cloud.provider.redis.controllers;
+package com.cloud.provider.redis.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,20 +13,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSONObject;
-import com.cloud.provider.redis.boot.BootRestMapResponse;
+import com.cloud.provider.redis.base.BaseRestMapResponse;
+import com.cloud.provider.redis.constants.RedisConstants;
+import com.cloud.provider.redis.enums.RedisResultEnum;
+import com.cloud.provider.redis.exception.RedisException;
 import com.cloud.provider.redis.rest.request.RedisRequest;
-import com.ochain.common.constants.BootConstants;
-import com.ochain.common.constants.RedisConstants;
-import com.ochain.common.exception.BootServiceException;
 
 /**
- * Redis Pub/Sub（发布/订阅） BootRedisPubSubController
+ * Redis Pub/Sub（发布/订阅） RedisPubSubController
  * @author wei.yong
  * @date 2017-09-14
  */
 @RestController
-@RequestMapping("/boot/redis/pubSub")
-public class BootRedisPubSubController extends BootBaseController {
+@RequestMapping("/redis/pubSub")
+public class RedisPubSubController extends BaseController {
 
 	protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -37,38 +37,38 @@ public class BootRedisPubSubController extends BootBaseController {
 	 * @param req
 	 * @param request
 	 * @param response
-	 * @return BootRestMapResponse
+	 * @return RestMapResponse
 	 */
 	@RequestMapping(value="/publish",method={RequestMethod.POST})
 	@ResponseBody
-	public BootRestMapResponse publish(
+	public BaseRestMapResponse publish(
 		@RequestBody RedisRequest req,
 		HttpServletRequest request, HttpServletResponse response) {
-		logger.info("===step1:【信息发送到指定的频道】(BootRedisPubSubController-publish)-传入参数, req:{}, json:{}", req, JSONObject.toJSONString(req));
+		logger.info("===step1:【信息发送到指定的频道】(RedisPubSubController-publish)-传入参数, req:{}, json:{}", req, JSONObject.toJSONString(req));
 
 		String channel = req.getChannel();
 		String message = req.getMessage();
 		if(StringUtils.isBlank(channel)) {
-			return new BootRestMapResponse(BootConstants.REDIS_FIELD_EMPTY, "channel为空");
+			return new BaseRestMapResponse(RedisResultEnum.REDIS_FIELD_EMPTY.getCode(), "channel为空");
 		} else if(StringUtils.isBlank(message)) {
-			return new BootRestMapResponse(BootConstants.REDIS_FIELD_EMPTY, "message为空");
+			return new BaseRestMapResponse(RedisResultEnum.REDIS_FIELD_EMPTY.getCode(), "message为空");
 		}
 
 		long len = 0l;
 		try {
 			len = redisService.publish(channel, message);
-			logger.info("===step2:【信息发送到指定的频道】(BootRedisPubSubController-publish)-信息发送到频道-返回信息, len:{}", len);
-		} catch (BootServiceException e) {
-			logger.error("===step2.1:【信息发送到指定的频道】(BootRedisPubSubController-publish)-信息发送到频道-事务性异常, Exception = {}, message = {}", e, e.getMessage());
+			logger.info("===step2:【信息发送到指定的频道】(RedisPubSubController-publish)-信息发送到频道-返回信息, len:{}", len);
+		} catch (RedisException e) {
+			logger.error("===step2.1:【信息发送到指定的频道】(RedisPubSubController-publish)-信息发送到频道-事务性异常, Exception = {}, message = {}", e, e.getMessage());
 			String errorCode = e.getErrorCode();
-			if(StringUtils.equals(errorCode, BootConstants.REDIS_ERROR)) {
-				return new BootRestMapResponse(BootConstants.REDIS_ERROR, BootConstants.REDIS_ERROR_MSG);
+			if(StringUtils.equals(errorCode, RedisResultEnum.REDIS_ERROR.getCode())) {
+				return new BaseRestMapResponse(RedisResultEnum.REDIS_ERROR);
 			}
 		}
 
-		BootRestMapResponse redisResponse = new BootRestMapResponse();
+		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
 		redisResponse.put(RedisConstants.RESULT, len);
-		logger.info("===step3:【信息发送到指定的频道】(BootRedisPubSubController-publish)-返回信息, redisResponse:{}", redisResponse);
+		logger.info("===step3:【信息发送到指定的频道】(RedisPubSubController-publish)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
 	/************************** jredis Pub/Sub（发布/订阅) 命令工具方法 ****************************/

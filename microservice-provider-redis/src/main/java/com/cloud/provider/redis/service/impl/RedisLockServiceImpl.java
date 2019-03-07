@@ -7,19 +7,19 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cloud.provider.redis.service.IBootRedisLockService;
-import com.cloud.provider.redis.service.IBootRedisService;
-import com.ochain.common.constants.BootConstants;
-import com.ochain.common.exception.BootServiceException;
+import com.cloud.provider.redis.enums.RedisResultEnum;
+import com.cloud.provider.redis.exception.RedisException;
+import com.cloud.provider.redis.service.IRedisLockService;
+import com.cloud.provider.redis.service.IRedisService;
 
 @Service
-public class BootRedisLockServiceImpl implements IBootRedisLockService {
+public class RedisLockServiceImpl implements IRedisLockService {
 
 	protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	//redis 客户端连接池
 	@Autowired
-	private IBootRedisService redisService;
+	private IRedisService redisService;
 
 	//加锁标志
 	private static final String LOCKED = "true";
@@ -39,7 +39,7 @@ public class BootRedisLockServiceImpl implements IBootRedisLockService {
      * @return boolean
      */
     @Override
-	public boolean lock(String key) throws BootServiceException {
+	public boolean lock(String key) throws RedisException {
     	//系统当前时间，纳秒 1纳秒==0.000001毫秒
     	long nowTime = System.nanoTime();
         //请求锁超时时间，1毫秒=1000000纳秒
@@ -80,7 +80,7 @@ public class BootRedisLockServiceImpl implements IBootRedisLockService {
             }
         } catch (Exception e) {
             logger.error("[BootRedisLockService.lock():获得锁-异常], Exception={}, message={}", e, e.getMessage());
-            throw new BootServiceException(BootConstants.REDIS_ERROR, BootConstants.REDIS_ERROR_MSG);
+            throw new RedisException(RedisResultEnum.REDIS_ERROR);
 		}
         return false;
 	}
@@ -91,7 +91,7 @@ public class BootRedisLockServiceImpl implements IBootRedisLockService {
      * @return boolean
      */
 	@Override
-	public boolean unlock(String key) throws BootServiceException {
+	public boolean unlock(String key) throws RedisException {
 		boolean unlocked = false;
         try {
         	if (this.locked) {
@@ -102,7 +102,7 @@ public class BootRedisLockServiceImpl implements IBootRedisLockService {
          	logger.info("[BootRedisLockService.unlock():释放锁成功], key:{}", key);
         } catch (Exception e) {
         	logger.error("[BootRedisLockService.unlock():释放锁-异常], Exception={}, message={}", e, e.getMessage());
-        	throw new BootServiceException(BootConstants.REDIS_ERROR, BootConstants.REDIS_ERROR_MSG);
+        	throw new RedisException(RedisResultEnum.REDIS_ERROR);
         }
 		return unlocked;
     }

@@ -1,4 +1,4 @@
-package com.cloud.provider.redis.start;
+package com.cloud.provider.redis;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -14,7 +14,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -29,7 +28,6 @@ import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import redis.clients.jedis.JedisSentinelPool;
 
 @SpringBootApplication
-@ComponentScan(basePackages={"com.ochain.provider.redis"})
 //服务发现
 @EnableEurekaClient
 public class StartBoot {
