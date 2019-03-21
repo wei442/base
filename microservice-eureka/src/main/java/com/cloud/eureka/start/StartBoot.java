@@ -3,8 +3,8 @@ package com.cloud.eureka.start;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @SpringBootApplication
@@ -15,7 +15,7 @@ public class StartBoot {
 	 * 启动web安全,允许所有请求,关闭CSRF保护
 	 * @author wei.yong
 	 */
-	@Configuration
+	@EnableWebSecurity
     public static class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         @Override
         protected void configure(HttpSecurity http) throws Exception {
