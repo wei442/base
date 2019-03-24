@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -86,7 +85,7 @@ public class StartBoot {
 
 	//超时时间
 	@Value("${jedis.timeout}")
-	public String timeout;
+	public Integer timeout;
 
 	/**
 	 * 使用fastjson
@@ -128,7 +127,7 @@ public class StartBoot {
 	 */
 	@Bean
     public JedisSentinelPool getJedisSentinelPool() {
-    	GenericObjectPoolConfig config = new GenericObjectPoolConfig();
+    	GenericObjectPoolConfig<Object> config = new GenericObjectPoolConfig<Object>();
     	if (StringUtils.isNumeric(maxTotal)) config.setMaxTotal(Integer.parseInt(maxTotal));
     	if (StringUtils.isNumeric(maxIdle)) config.setMaxIdle(Integer.parseInt(maxIdle));
     	if (StringUtils.isNumeric(minIdle)) config.setMinIdle(Integer.parseInt(minIdle));
@@ -150,8 +149,8 @@ public class StartBoot {
 		}
 
 		JedisSentinelPool jedisSentinelPool = null;
-		if (StringUtils.isNotBlank(timeout) && NumberUtils.isCreatable(timeout)) {
-			jedisSentinelPool = new JedisSentinelPool(sentinelMasterName, sentinels, config, Integer.parseInt(timeout), sentinelPassword);
+		if (timeout != null) {
+			jedisSentinelPool = new JedisSentinelPool(sentinelMasterName, sentinels, config, timeout, sentinelPassword);
 		} else {
 			jedisSentinelPool = new JedisSentinelPool(sentinelMasterName, sentinels, config, sentinelPassword);
 		}
