@@ -71,5 +71,6 @@
 	<modules>
 		<module>microservice-eureka</module>
 		<module>microservice-provider-redis</module>
+		<module>microservice-provider-fastdfs</module>
 	</modules>
 </project>
