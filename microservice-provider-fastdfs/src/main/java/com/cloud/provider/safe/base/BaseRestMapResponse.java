@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import com.alibaba.fastjson.JSONObject;
 import com.cloud.common.constants.CommConstants;
-import com.cloud.common.enums.ResultEnum;
+import com.cloud.provider.safe.enums.FastdfsResultEnum;
 
 /**
  * base map返回
@@ -27,7 +27,7 @@ public class BaseRestMapResponse extends JSONObject implements Serializable {
 		this.put(CommConstants.RET_MSG, msg);
 	}
 
-	public BaseRestMapResponse(ResultEnum enums) {
+	public BaseRestMapResponse(FastdfsResultEnum enums) {
 		this.put(CommConstants.RET_CODE, enums.getCode());
 		this.put(CommConstants.RET_MSG, enums.getMsg());
 	}

@@ -8,10 +8,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,10 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.fastjson.JSONObject;
-import com.cloud.common.constants.CommConstants;
-import com.cloud.common.enums.safe.RetSafeAdminResultEnum;
 import com.cloud.provider.safe.base.BaseRestMapResponse;
+import com.cloud.provider.safe.enums.FastdfsResultEnum;
 import com.cloud.provider.safe.rest.request.fastdfs.FastdfsRequest;
+import com.cloud.provider.safe.vo.fastdfs.FastdfsDownVo;
 import com.cloud.provider.safe.vo.fastdfs.FastdfsVo;
 import com.github.tobato.fastdfs.domain.conn.FdfsWebServer;
 import com.github.tobato.fastdfs.domain.fdfs.FileInfo;
@@ -82,7 +78,7 @@ public class FastdfsController extends BaseController {
             logger.info("===step2:【上传文件】(FastdfsController-uploadFile)-上传文件, storePath:{}", storePath);
         } catch (Exception e) {
 			logger.error("===step2.1:【上传文件】(FastdfsController-uploadFile)-上传文件异常, Exception = {}, message = {}", e, e.getMessage());
-			return new BaseRestMapResponse(RetSafeAdminResultEnum.FASTDFS_UPLOAD_FILE_ERROR);
+			return new BaseRestMapResponse(FastdfsResultEnum.FASTDFS_UPLOAD_FILE_ERROR);
         }
 
 		String fileUrl = fdfsWebServer.getWebServerUrl() + storePath.getFullPath();
@@ -92,7 +88,7 @@ public class FastdfsController extends BaseController {
 
 		//返回信息
 		BaseRestMapResponse fastdfsResponse = new BaseRestMapResponse();
-		fastdfsResponse.put(CommConstants.RESULT, fastdfsVo);
+		fastdfsResponse.putAll((JSONObject) JSONObject.toJSON(fastdfsVo));
 	    logger.info("===step3:【上传文件】(FastdfsController-uploadFile)-返回信息, fastdfsResponse:{}", fastdfsResponse);
 	    return fastdfsResponse;
 	}
@@ -117,7 +113,7 @@ public class FastdfsController extends BaseController {
             logger.info("===step2:【上传图片】(FastdfsController-uploadImage)-上传文件, storePath:{}", storePath);
         } catch (Exception e) {
 			logger.error("===step2.1:【上传图片】(FastdfsController-uploadImage)-上传文件异常, Exception = {}, message = {}", e, e.getMessage());
-			return new BaseRestMapResponse(RetSafeAdminResultEnum.FASTDFS_UPLOAD_FILE_ERROR);
+			return new BaseRestMapResponse(FastdfsResultEnum.FASTDFS_UPLOAD_FILE_ERROR);
         }
 
 		String fileUrl = fdfsWebServer.getWebServerUrl() + storePath.getFullPath();
@@ -127,7 +123,7 @@ public class FastdfsController extends BaseController {
 
 		//返回信息
 		BaseRestMapResponse fastdfsResponse = new BaseRestMapResponse();
-		fastdfsResponse.put(CommConstants.RESULT, fastdfsVo);
+		fastdfsResponse.putAll((JSONObject) JSONObject.toJSON(fastdfsVo));
 	    logger.info("===step3:【上传图片】(FastdfsController-uploadImage)-返回信息, fastdfsResponse:{}", fastdfsResponse);
 	    return fastdfsResponse;
 	}
@@ -153,7 +149,7 @@ public class FastdfsController extends BaseController {
 
 		//返回信息
 		BaseRestMapResponse fastdfsResponse = new BaseRestMapResponse();
-		fastdfsResponse.put(CommConstants.RESULT, fileInfo);
+		fastdfsResponse.putAll((JSONObject) JSONObject.toJSON(fileInfo));
 	    logger.info("===step3:【获取文件】(FastdfsController-getFile)-返回信息, fastdfsResponse:{}", fastdfsResponse);
 	    return fastdfsResponse;
 	}
@@ -167,7 +163,7 @@ public class FastdfsController extends BaseController {
 	@ApiOperation(value = "下载文件")
 	@RequestMapping(value="/downloadFile",method={RequestMethod.POST})
 	@ResponseBody
-	public ResponseEntity<byte[]> downloadFile(
+	public BaseRestMapResponse downloadFile(
 		@Validated @RequestBody FastdfsRequest req,
 		BindingResult bindingResult) {
 		logger.info("===step1:【下载文件】(FastdfsController-downloadFile)-请求参数, req:{}, json:{}", req, JSONObject.toJSONString(req));
@@ -179,14 +175,22 @@ public class FastdfsController extends BaseController {
 		logger.info("===step2:【下载文件】(FastdfsController-downloadFile)-下载文件, bytes.length:{}", bytes == null ? null : bytes.length);
 		String fileName = StringUtils.substringAfterLast(fileUrl, "/");
 
-		// 设置文件下载 Header
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentDispositionFormData("attachment", fileName);
-        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-        headers.setPragma("no-cache");
-        headers.setExpires(0);
+//		// 设置文件下载 Header
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setContentDispositionFormData("attachment", fileName);
+//        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+//        headers.setPragma("no-cache");
+//        headers.setExpires(0);
 
-		return new ResponseEntity<byte[]>(bytes, headers, HttpStatus.OK);
+        FastdfsDownVo fastdfsDownVo = new FastdfsDownVo();
+        fastdfsDownVo.setFileName(fileName);
+        fastdfsDownVo.setBytes(bytes);
+
+        //返回信息
+      	BaseRestMapResponse fastdfsResponse = new BaseRestMapResponse();
+        fastdfsResponse.putAll((JSONObject) JSONObject.toJSON(fastdfsDownVo));
+	    logger.info("===step3:【下载文件】(FastdfsController-downloadFile)-返回信息, fastdfsResponse:{}", fastdfsResponse);
+	    return fastdfsResponse;
 	}
 
 	/**
