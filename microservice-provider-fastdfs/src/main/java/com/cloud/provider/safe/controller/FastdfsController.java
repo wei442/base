@@ -3,7 +3,6 @@ package com.cloud.provider.safe.controller;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
-import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,12 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.fastjson.JSONObject;
 import com.cloud.provider.safe.base.BaseRestMapResponse;
-import com.cloud.provider.safe.enums.FastdfsResultEnum;
-import com.cloud.provider.safe.rest.request.fastdfs.FastdfsRequest;
+import com.cloud.provider.safe.rest.request.fastdfs.FastdfsUploadRequest;
+import com.cloud.provider.safe.rest.request.fastdfs.FastdfsUrlRequest;
 import com.cloud.provider.safe.vo.fastdfs.FastdfsDownVo;
 import com.cloud.provider.safe.vo.fastdfs.FastdfsVo;
 import com.github.tobato.fastdfs.domain.conn.FdfsWebServer;
@@ -59,27 +57,17 @@ public class FastdfsController extends BaseController {
 	@RequestMapping(value="/uploadFile",method={RequestMethod.POST})
 	@ResponseBody
 	public BaseRestMapResponse uploadFile(
-		@Validated @RequestBody FastdfsRequest req,
+		@Validated @RequestBody FastdfsUploadRequest req,
 		BindingResult bindingResult) {
 		logger.info("===step1:【上传文件】(FastdfsController-uploadFile)-请求参数, req:{}", req);
 
 		byte[] bytes = req.getBytes();
 		String fileName = req.getFileName();
 		Long fileSize = req.getFileSize();
-		if(bytes == null || bytes.length == 0) {
-		}
 
 		InputStream inputStream = new ByteArrayInputStream(bytes);
-
-
-		StorePath storePath = null;
-		try {
-            storePath = fastFileStorageClient.uploadFile(inputStream, fileSize, fileName, null);
-            logger.info("===step2:【上传文件】(FastdfsController-uploadFile)-上传文件, storePath:{}", storePath);
-        } catch (Exception e) {
-			logger.error("===step2.1:【上传文件】(FastdfsController-uploadFile)-上传文件异常, Exception = {}, message = {}", e, e.getMessage());
-			return new BaseRestMapResponse(FastdfsResultEnum.FASTDFS_UPLOAD_FILE_ERROR);
-        }
+		StorePath storePath = fastFileStorageClient.uploadFile(inputStream, fileSize, fileName, null);
+        logger.info("===step2:【上传文件】(FastdfsController-uploadFile)-上传文件, storePath:{}", storePath);
 
 		String fileUrl = fdfsWebServer.getWebServerUrl() + storePath.getFullPath();
 		FastdfsVo fastdfsVo = new FastdfsVo();
@@ -103,18 +91,17 @@ public class FastdfsController extends BaseController {
 	@RequestMapping(value="/uploadImage",method={RequestMethod.POST})
 	@ResponseBody
 	public BaseRestMapResponse uploadImage(
-		MultipartFile file,
+		@Validated @RequestBody FastdfsUploadRequest req,
 		BindingResult bindingResult) {
-		logger.info("===step1:【上传图片】(FastdfsController-uploadImage)-请求参数, file:{}", file);
+		logger.info("===step1:【上传图片】(FastdfsController-uploadImage)-请求参数, req:{}", req);
 
-		StorePath storePath = null;
-		try {
-            storePath = fastFileStorageClient.uploadImageAndCrtThumbImage(file.getInputStream(), file.getSize(), FilenameUtils.getExtension(file.getOriginalFilename()), null);
-            logger.info("===step2:【上传图片】(FastdfsController-uploadImage)-上传文件, storePath:{}", storePath);
-        } catch (Exception e) {
-			logger.error("===step2.1:【上传图片】(FastdfsController-uploadImage)-上传文件异常, Exception = {}, message = {}", e, e.getMessage());
-			return new BaseRestMapResponse(FastdfsResultEnum.FASTDFS_UPLOAD_FILE_ERROR);
-        }
+		byte[] bytes = req.getBytes();
+		String fileName = req.getFileName();
+		Long fileSize = req.getFileSize();
+
+		InputStream inputStream = new ByteArrayInputStream(bytes);
+		StorePath storePath = fastFileStorageClient.uploadImageAndCrtThumbImage(inputStream, fileSize, fileName, null);
+        logger.info("===step2:【上传图片】(FastdfsController-uploadImage)-上传文件, storePath:{}", storePath);
 
 		String fileUrl = fdfsWebServer.getWebServerUrl() + storePath.getFullPath();
 		FastdfsVo fastdfsVo = new FastdfsVo();
@@ -138,7 +125,7 @@ public class FastdfsController extends BaseController {
 	@RequestMapping(value="/getFile",method={RequestMethod.POST})
 	@ResponseBody
 	public BaseRestMapResponse getFile(
-		@Validated @RequestBody FastdfsRequest req,
+		@Validated @RequestBody FastdfsUrlRequest req,
 		BindingResult bindingResult) {
 		logger.info("===step1:【获取文件】(FastdfsController-getFile)-请求参数, req:{}, json:{}", req, JSONObject.toJSONString(req));
 
@@ -164,7 +151,7 @@ public class FastdfsController extends BaseController {
 	@RequestMapping(value="/downloadFile",method={RequestMethod.POST})
 	@ResponseBody
 	public BaseRestMapResponse downloadFile(
-		@Validated @RequestBody FastdfsRequest req,
+		@Validated @RequestBody FastdfsUrlRequest req,
 		BindingResult bindingResult) {
 		logger.info("===step1:【下载文件】(FastdfsController-downloadFile)-请求参数, req:{}, json:{}", req, JSONObject.toJSONString(req));
 
@@ -174,13 +161,6 @@ public class FastdfsController extends BaseController {
 		byte[] bytes = fastFileStorageClient.downloadFile(storePath.getGroup(), storePath.getPath(), null);
 		logger.info("===step2:【下载文件】(FastdfsController-downloadFile)-下载文件, bytes.length:{}", bytes == null ? null : bytes.length);
 		String fileName = StringUtils.substringAfterLast(fileUrl, "/");
-
-//		// 设置文件下载 Header
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setContentDispositionFormData("attachment", fileName);
-//        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-//        headers.setPragma("no-cache");
-//        headers.setExpires(0);
 
         FastdfsDownVo fastdfsDownVo = new FastdfsDownVo();
         fastdfsDownVo.setFileName(fileName);
@@ -203,7 +183,7 @@ public class FastdfsController extends BaseController {
 	@RequestMapping(value="/deleteFile",method={RequestMethod.POST})
 	@ResponseBody
 	public BaseRestMapResponse deleteFile(
-		@Validated @RequestBody FastdfsRequest req,
+		@Validated @RequestBody FastdfsUrlRequest req,
 		BindingResult bindingResult) {
 		logger.info("===step1:【删除文件】(FastdfsController-deleteFile)-请求参数, req:{}, json:{}", req, JSONObject.toJSONString(req));
 
