@@ -25,8 +25,8 @@ public class FastdfsUploadRequest implements Serializable {
 	@NotNull(message = "文件大小不能为空")
 	private Long fileSize;
 
-	@ApiModelProperty(value = "文件url")
-	@NotEmpty(message = "文件url为空")
+	@ApiModelProperty(value = "bytes数组")
+	@NotEmpty(message = "bytes数组不能为空")
 	private byte[] bytes;
 
 }

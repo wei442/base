@@ -79,6 +79,12 @@
 			<artifactId>jedis</artifactId>
 		</dependency>
 		
+		<!-- 通用工具类 -->
+        <dependency>
+            <groupId>com.cloud</groupId>
+            <artifactId>safe-common</artifactId>
+            <version>0.0.1-RELEASE</version>
+        </dependency>
     </dependencies>
 
 </project>

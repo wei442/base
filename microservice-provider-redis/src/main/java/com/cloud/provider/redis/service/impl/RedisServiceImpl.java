@@ -11,8 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cloud.provider.redis.enums.RedisResultEnum;
-import com.cloud.provider.redis.exception.RedisException;
+import com.cloud.common.enums.redis.RedisResultEnum;
+import com.cloud.common.exception.RedisException;
 import com.cloud.provider.redis.service.IRedisService;
 
 import redis.clients.jedis.BinaryClient.LIST_POSITION;

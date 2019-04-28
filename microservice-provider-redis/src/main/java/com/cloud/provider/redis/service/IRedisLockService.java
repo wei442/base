@@ -1,6 +1,6 @@
 package com.cloud.provider.redis.service;
 
-import com.cloud.provider.redis.exception.RedisException;
+import com.cloud.common.exception.RedisException;
 
 public interface IRedisLockService {
 

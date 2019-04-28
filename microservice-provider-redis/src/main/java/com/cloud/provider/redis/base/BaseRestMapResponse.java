@@ -3,8 +3,8 @@ package com.cloud.provider.redis.base;
 import java.io.Serializable;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cloud.common.enums.redis.RedisResultEnum;
 import com.cloud.provider.redis.constants.RedisConstants;
-import com.cloud.provider.redis.enums.RedisResultEnum;
 
 /**
  * base map返回

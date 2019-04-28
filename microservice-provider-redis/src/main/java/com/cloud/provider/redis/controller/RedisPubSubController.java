@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cloud.common.enums.redis.RedisResultEnum;
+import com.cloud.common.exception.RedisException;
 import com.cloud.provider.redis.base.BaseRestMapResponse;
 import com.cloud.provider.redis.constants.RedisConstants;
-import com.cloud.provider.redis.enums.RedisResultEnum;
-import com.cloud.provider.redis.exception.RedisException;
 import com.cloud.provider.redis.rest.request.RedisRequest;
 
 /**
