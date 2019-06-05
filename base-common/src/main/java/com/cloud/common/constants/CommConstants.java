@@ -27,41 +27,6 @@ public class CommConstants {
 	//Content-Type
 	public static final String CONTENT_TYPE = "Content-Type";
 
-	//60秒 1分钟(60)
-	public static final Integer ONE_MINUTE_SECONDS_TIME = 60;
-
-	//300秒 5分钟(5*60)
-	public static final Integer FIVE_MINUTE_SECONDS_TIME = 300;
-
-	//600秒 10分钟(10*60)
-	public static final Integer TEN_MINUTE_SECONDS_TIME = 300;
-
-	//3600秒 1小时(1*60*60)
-	public static final Integer ONE_HOUR_SECONDS_TIME = 3600;
-	//7200秒 2小时(2*60*60)
-	public static final Integer TWO_HOUR_SECONDS_TIME = 7200;
-	//86400秒 24小时(24*60*60)
-	public static final Integer TWENTY_FOUR_HOUR_SECONDS_TIME = 86400;
-
-	//token
-	public static final String TOKEN = "token";
-	//webtoken
-	public static final String WEB_TOKEN = "webtoken";
-
-	//claims
-	public static final String CLAIMS = "claims";
-	//cloud
-	public static final String CLOUD = "cloud";
-
-	public static final String ENTERPRISE_ID = "enterpriseId";
-	public static final String ENTERPRISE_NAME = "enterpriseName";
-	public static final String USER_ID = "userId";
-	public static final String USER_ACCOUNT = "userAccount";
-	public static final String USER_NAME = "userName";
-	public static final String ORG_ID = "orgId";
-	public static final String ORG_NAME = "orgName";
-	public static final String BASE_USER_ID = "baseUserId";
-
   	/*----------------------------- 系统统一错误编码 -----------------------------*/
     /**
      * 错误编码-系统错误
@@ -70,7 +35,7 @@ public class CommConstants {
     /**
      * 错误描述-系统错误
      */
-    public static final String SYSTEM_ERROR_MSG = "当前系统繁忙，请稍后再试";
+    public static final String SYSTEM_ERROR_MSG = "服务竟然出错了，请刷新页面";
 
     /**
      * 错误编码-数据操作失败(数据不存在)
@@ -79,7 +44,7 @@ public class CommConstants {
     /**
      * 错误描述-数据操作失败(数据不存在)
      */
-    public static final String DATABASE_ERROR_MSG = "数据操作失败";
+    public static final String DATABASE_ERROR_MSG = "数据竟然操作失败";
 
     /**
      * 错误编码-数据不存在

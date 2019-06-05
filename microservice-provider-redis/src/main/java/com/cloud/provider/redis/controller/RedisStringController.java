@@ -15,12 +15,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cloud.common.constants.CommConstants;
 import com.cloud.common.enums.redis.RedisResultEnum;
 import com.cloud.common.exception.RedisException;
 import com.cloud.provider.redis.base.BaseRestMapResponse;
-import com.cloud.provider.redis.constants.RedisConstants;
 import com.cloud.provider.redis.rest.request.RedisRequest;
 
+import io.swagger.annotations.Api;
 import redis.clients.jedis.BitOP;
 
 /**
@@ -28,6 +29,7 @@ import redis.clients.jedis.BitOP;
  * @author wei.yong
  * @date 2017-09-14
  */
+@Api(tags = "字符串")
 @RestController
 @RequestMapping("/redis/string")
 public class RedisStringController extends BaseController {
@@ -71,7 +73,7 @@ public class RedisStringController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【【追加key值】(RedisStringController-append)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -108,7 +110,7 @@ public class RedisStringController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【计算给定字符串中设置为1的比特位的数量】(RedisStringController-bitcount)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -151,7 +153,7 @@ public class RedisStringController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【计算给定字符串中设置为1的比特位的数量】(RedisStringController-bitcountStartEnd)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -202,7 +204,7 @@ public class RedisStringController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【对一个保存二进制位的字符串key进行位元操作】(RedisStringController-bitop)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -253,7 +255,7 @@ public class RedisStringController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【对多个保存二进制位的字符串key进行位元操作】(RedisStringController-bitopArray)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -293,7 +295,7 @@ public class RedisStringController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【将一个字符串看作是一个由二进制位组成的数组】(RedisStringController-bitfield)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -333,7 +335,7 @@ public class RedisStringController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【将一个字符串看作是一个由二进制位组成的数组】(RedisStringController-bitfieldArray)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -370,7 +372,7 @@ public class RedisStringController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【key中储存的数字值减一】(RedisStringController-decr)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -410,7 +412,7 @@ public class RedisStringController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【key所储存的值减去减量值】(RedisStringController-decrBy)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -447,7 +449,7 @@ public class RedisStringController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【获取 key值】(RedisStringController-get)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -487,7 +489,7 @@ public class RedisStringController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, flag);
+		redisResponse.put(CommConstants.RESULT, flag);
 		logger.info("===step3:【对key所储存的字符串值获取指定偏移量上的位】(RedisStringController-getbit)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -532,7 +534,7 @@ public class RedisStringController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【获取存储在指定 key中字符串的子字符串】(RedisStringController-getrange)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -572,7 +574,7 @@ public class RedisStringController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【指定key值返回key旧值】(RedisStringController-getSet)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -609,7 +611,7 @@ public class RedisStringController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【key中储存的数字值增一】(RedisStringController-incr)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -649,7 +651,7 @@ public class RedisStringController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【key所储存的值减去指定的增量值】(RedisStringController-incrBy)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -689,7 +691,7 @@ public class RedisStringController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【key中所储存的值加上浮点数增量值】(RedisStringController-incrByFloat)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -726,7 +728,7 @@ public class RedisStringController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【返回一个key值】(RedisStringController-mget)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -763,7 +765,7 @@ public class RedisStringController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【返回多个key的值】(RedisStringController-mgetArray)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -800,7 +802,7 @@ public class RedisStringController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【同时设置多个 key-value】(RedisStringController-mset)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -837,7 +839,7 @@ public class RedisStringController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【同时设置多个 key-value】(RedisStringController-msetnx)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -882,7 +884,7 @@ public class RedisStringController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【毫秒为单位设置key的生存时间】(RedisStringController-psetex)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -924,7 +926,7 @@ public class RedisStringController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【设置key值】(RedisStringController-set)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -968,7 +970,7 @@ public class RedisStringController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, flag);
+		redisResponse.put(CommConstants.RESULT, flag);
 		logger.info("===step3:【对key所储存的字符串值设置或清除指定偏移量上的位(bit)】(RedisStringController-setbit)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -1013,7 +1015,7 @@ public class RedisStringController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【设置key值和过期时间】(RedisStringController-setex)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -1054,7 +1056,7 @@ public class RedisStringController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【设置key值】(RedisStringController-setnx)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -1099,7 +1101,7 @@ public class RedisStringController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【指定的字符串覆盖给定key所储存的字符串值】(RedisStringController-setrange)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -1137,7 +1139,7 @@ public class RedisStringController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【获取key所储存的字符串值的长度】(RedisStringController-strlen)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}

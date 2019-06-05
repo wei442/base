@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cloud.common.enums.safe.SafeResultEnum;
+import com.cloud.common.enums.sms.SmsResultEnum;
 import com.cloud.provider.sms.dao.SmsMapper;
 import com.cloud.provider.sms.po.Sms;
 import com.cloud.provider.sms.po.SmsExample;
@@ -61,7 +61,7 @@ public class SmsServiceImpl implements ISmsService {
 		sms.setCreateTime(new Date());
 		sms.setUpdateTime(new Date());
 		int i = smsMapper.insertSelective(sms);
-		Assert.thanOrEqualZreo(i, SafeResultEnum.DATABASE_ERROR);
+		Assert.thanOrEqualZreo(i, SmsResultEnum.DATABASE_NOTEXIST);
 		return i;
 	}
 
@@ -75,7 +75,7 @@ public class SmsServiceImpl implements ISmsService {
 		logger.info("(SmsService-modify)-修改短信信息-传入参数, sms:{}", sms);
 		sms.setUpdateTime(new Date());
 		int i = smsMapper.updateByPrimaryKey(sms);
-		Assert.thanOrEqualZreo(i, SafeResultEnum.DATABASE_ERROR);
+		Assert.thanOrEqualZreo(i, SmsResultEnum.DATABASE_NOTEXIST);
 		return i;
 	}
 

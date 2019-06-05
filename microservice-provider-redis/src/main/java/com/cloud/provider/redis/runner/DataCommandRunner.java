@@ -30,7 +30,7 @@ public class DataCommandRunner implements CommandLineRunner {
 	@PreDestroy
     public void destory() {
 		long begintime = System.currentTimeMillis();
-    	if(logger.isInfoEnabled())logger.info("【DataCommandRunner-destroy】-用户数据销毁开始,请等待3秒钟,程序将自动退出!");
+    	logger.info("【DataCommandRunner-destroy】-用户数据销毁开始,请等待3秒钟,程序将自动退出!");
     	try {
     		//睡眠3,000毫秒(3秒)
     		Thread.sleep(3000);
@@ -38,7 +38,7 @@ public class DataCommandRunner implements CommandLineRunner {
 			logger.error("【DataCommandRunner-destroy】-用户数据销毁--事务性异常, Exception = {}, message = {}", e, e.getMessage());
 		}
         long endtime = System.currentTimeMillis();
-        if(logger.isInfoEnabled())logger.info("【DataCommandRunner-destroy】-用户数据销毁完成, 耗时"+(endtime-begintime)+"ms！");
+        logger.info("【DataCommandRunner-destroy】-用户数据销毁完成, 耗时"+(endtime-begintime)+"ms！");
     }
 
 }

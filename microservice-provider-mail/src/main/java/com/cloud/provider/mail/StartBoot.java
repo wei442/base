@@ -24,7 +24,7 @@ import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 
 @SpringBootApplication
-@MapperScan(basePackages="com.cloud.provider.safe.dao")
+@MapperScan(basePackages="com.cloud.provider.mail.dao")
 @EnableTransactionManagement
 //服务发现
 @EnableEurekaClient

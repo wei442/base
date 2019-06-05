@@ -13,17 +13,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cloud.common.constants.CommConstants;
 import com.cloud.common.enums.redis.RedisResultEnum;
 import com.cloud.common.exception.RedisException;
 import com.cloud.provider.redis.base.BaseRestMapResponse;
-import com.cloud.provider.redis.constants.RedisConstants;
 import com.cloud.provider.redis.rest.request.RedisRequest;
+
+import io.swagger.annotations.Api;
 
 /**
  * Redis Pub/Sub（发布/订阅） RedisPubSubController
  * @author wei.yong
  * @date 2017-09-14
  */
+@Api(tags = "地理位置")
 @RestController
 @RequestMapping("/redis/pubSub")
 public class RedisPubSubController extends BaseController {
@@ -67,7 +70,7 @@ public class RedisPubSubController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【信息发送到指定的频道】(RedisPubSubController-publish)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}

@@ -14,17 +14,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cloud.common.constants.CommConstants;
 import com.cloud.common.enums.redis.RedisResultEnum;
 import com.cloud.common.exception.RedisException;
 import com.cloud.provider.redis.base.BaseRestMapResponse;
-import com.cloud.provider.redis.constants.RedisConstants;
 import com.cloud.provider.redis.rest.request.RedisRequest;
+
+import io.swagger.annotations.Api;
 
 /**
  * Redis Server（服务器） RedisServerController
  * @author wei.yong
  * @date 2017-09-14
  */
+@Api(tags = "服务器")
 @RestController
 @RequestMapping("/redis/server")
 public class RedisServerController extends BaseController {
@@ -58,7 +61,7 @@ public class RedisServerController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【执行一个AOF文件重写操作】(RedisServerController-bgrewriteaof)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -88,7 +91,7 @@ public class RedisServerController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【保存当前数据库的数据到磁盘】(RedisServerController-bgsave)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -118,7 +121,7 @@ public class RedisServerController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【当前数据库的key的数量】(RedisServerController-dbSize)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -148,7 +151,7 @@ public class RedisServerController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【关于Redis服务器的各种信息和统计数】(RedisServerController-info)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -178,7 +181,7 @@ public class RedisServerController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【执行一个同步保存】(RedisServerController-save)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -208,7 +211,7 @@ public class RedisServerController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【停止所有客户端】(RedisServerController-shutdown)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -248,7 +251,7 @@ public class RedisServerController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【动态地修改复制功能】(RedisServerController-slaveof)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -306,7 +309,7 @@ public class RedisServerController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【当前服务器时间】(RedisServerController-time)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}

@@ -1,12 +1,12 @@
 package com.cloud.provider.redis.rest.request;
 
+import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Map;
-
-import com.cloud.provider.redis.base.BaseRestRequest;
 
 import redis.clients.jedis.GeoCoordinate;
 
-public class RedisRequest extends BaseRestRequest {
+public class RedisRequest implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -648,7 +648,28 @@ public class RedisRequest extends BaseRestRequest {
 		this.geoRadiusParam = geoRadiusParam;
 	}
 
-
-
+	@Override
+	public String toString() {
+		return "RedisRequest [key=" + key + ", value=" + value + ", seconds=" + seconds + ", unixTime=" + unixTime
+				+ ", milliseconds=" + milliseconds + ", millisecondsTimestamp=" + millisecondsTimestamp
+				+ ", startOffset=" + startOffset + ", endOffset=" + endOffset + ", offset=" + offset + ", pattern="
+				+ pattern + ", host=" + host + ", port=" + port + ", destinationDb=" + destinationDb + ", dbIndex="
+				+ dbIndex + ", ttl=" + ttl + ", serializedValue=" + Arrays.toString(serializedValue)
+				+ ", sortingParameters=" + sortingParameters + ", oldkey=" + oldkey + ", newkey=" + newkey + ", field="
+				+ field + ", timeout=" + timeout + ", source=" + source + ", destination=" + destination + ", index="
+				+ index + ", from=" + from + ", to=" + to + ", count=" + count + ", start=" + start + ", end=" + end
+				+ ", srckey=" + srckey + ", dstkey=" + dstkey + ", srckeys=" + Arrays.toString(srckeys) + ", operation="
+				+ operation + ", argument=" + argument + ", arguments=" + Arrays.toString(arguments) + ", score="
+				+ score + ", member=" + member + ", min=" + min + ", max=" + max + ", minStr=" + minStr + ", maxStr="
+				+ maxStr + ", cursor=" + cursor + ", password=" + password + ", string=" + string + ", channel="
+				+ channel + ", message=" + message + ", keys=" + Arrays.toString(keys) + ", values="
+				+ Arrays.toString(values) + ", keysvalues=" + Arrays.toString(keysvalues) + ", fields="
+				+ Arrays.toString(fields) + ", members=" + Arrays.toString(members) + ", hash=" + hash + ", element="
+				+ element + ", elements=" + Arrays.toString(elements) + ", sourcekey=" + sourcekey + ", sourcekeys="
+				+ Arrays.toString(sourcekeys) + ", where=" + where + ", pivot=" + pivot + ", longitude=" + longitude
+				+ ", latitude=" + latitude + ", radius=" + radius + ", memberCoordinateMap=" + memberCoordinateMap
+				+ ", member1=" + member1 + ", member2=" + member2 + ", geoUnit=" + geoUnit + ", geoRadiusParam="
+				+ geoRadiusParam + "]";
+	}
 
 }

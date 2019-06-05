@@ -18,13 +18,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cloud.common.constants.CommConstants;
 import com.cloud.common.enums.redis.RedisResultEnum;
 import com.cloud.common.exception.RedisException;
 import com.cloud.provider.redis.base.BaseRestMapResponse;
-import com.cloud.provider.redis.constants.RedisConstants;
 import com.cloud.provider.redis.rest.request.RedisRequest;
 import com.cloud.provider.redis.vo.WithScoresVo;
 
+import io.swagger.annotations.Api;
 import redis.clients.jedis.Tuple;
 
 /**
@@ -32,6 +33,7 @@ import redis.clients.jedis.Tuple;
  * @author wei.yong
  * @date 2017-09-14
  */
+@Api(tags = "有序集合")
 @RestController
 @RequestMapping("/redis/sortedSet")
 public class RedisSortedSetController extends BaseController {
@@ -78,7 +80,7 @@ public class RedisSortedSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【根据分数值存储有序集合】(RedisSortedSetController-zadd)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -115,7 +117,7 @@ public class RedisSortedSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【有序集key的基数】(RedisSortedSetController-zcard)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -158,7 +160,7 @@ public class RedisSortedSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【有序集key中成员的数量】(RedisSortedSetController-zcount)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -201,7 +203,7 @@ public class RedisSortedSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【有序集合成员分数增加增量】(RedisSortedSetController-zincrby)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -244,7 +246,7 @@ public class RedisSortedSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【有序集key中指定区间内的成员】(RedisSortedSetController-zrange)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -303,7 +305,7 @@ public class RedisSortedSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【有序集key中指定区间内的成员】(RedisSortedSetController-zrangeWithScores)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -346,7 +348,7 @@ public class RedisSortedSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【根据分数值范围查询存储有序集合】(RedisSortedSetController-zrangeByScore)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -405,7 +407,7 @@ public class RedisSortedSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【根据分数值范围查询存储有序集合】(RedisSortedSetController-zrangeByScoreWithScores)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -445,7 +447,7 @@ public class RedisSortedSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【有序集中成员排名】(RedisSortedSetController-zrank)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -485,7 +487,7 @@ public class RedisSortedSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【移除有序集key中的一个成员】(RedisSortedSetController-zrem)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -525,7 +527,7 @@ public class RedisSortedSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【移除有序集key中的多个成员】(RedisSortedSetController-zremArray)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -568,7 +570,7 @@ public class RedisSortedSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【移除指定排名区间内的所有成员】(RedisSortedSetController-zremrangeByRank)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -611,7 +613,7 @@ public class RedisSortedSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【分数值范围删除存储有序集合】(RedisSortedSetController-zremrangeByScore)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -654,7 +656,7 @@ public class RedisSortedSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【有序集key中指定区间内的成员】(RedisSortedSetController-zrevrange)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -713,7 +715,7 @@ public class RedisSortedSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【有序集key中指定区间内的成员】(RedisSortedSetController-zrevrangeWithScores)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -756,7 +758,7 @@ public class RedisSortedSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【有序集key中max和min之间所有的成员】(RedisSortedSetController-zrevrangeByScore)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -815,7 +817,7 @@ public class RedisSortedSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【有序集key中max和min之间所有的成员】(RedisSortedSetController-zrevrangeByScoreWithScores)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -855,7 +857,7 @@ public class RedisSortedSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【返回有序集key中成员member的排名】(RedisSortedSetController-zrevrank)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -895,7 +897,7 @@ public class RedisSortedSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【有序集key中成员member的score值】(RedisSortedSetController-zscore)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}

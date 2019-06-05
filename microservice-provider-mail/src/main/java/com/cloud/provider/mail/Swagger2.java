@@ -36,8 +36,8 @@ public class Swagger2 {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Safe provider service RESTful APIs")
-                .description("安全活动提供者接口")
+                .title("Mail provider service RESTful APIs")
+                .description("邮件提供者接口")
                 .contact(new Contact("weiyong", "http://www.ochain.fun/", "weiyong@ochain.fun"))
                 .version("1.0.0")
                 .build();

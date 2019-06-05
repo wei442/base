@@ -5,11 +5,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
+
 /**
  * Redis Script（脚本） RedisScriptController
  * @author wei.yong
  * @date 2017-09-14
  */
+@Api(tags = "脚本")
 @RestController
 @RequestMapping("/redis/script")
 public class RedisScriptController extends BaseController {

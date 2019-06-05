@@ -1,10 +1,10 @@
-package com.cloud.provider.sms.util;
+package com.cloud.provider.mail.util;
 
 import java.util.Collection;
 import java.util.Map;
 
 import com.cloud.common.enums.ResultEnum;
-import com.cloud.common.exception.SmsException;
+import com.cloud.common.exception.EmailException;
 
 /**
  * 校验参数结果
@@ -19,24 +19,24 @@ public class Assert {
 	 */
 	public static void thanOrEqualZreo(Object obj, ResultEnum result) {
 		if(obj == null) {
-			throw new SmsException(result);
+			throw new EmailException(result);
 		}
 		if (obj instanceof Integer) {
 			Integer i = (Integer) obj;
 			if(i <= 0) {
-				throw new SmsException(result);
+				throw new EmailException(result);
 			}
 		}
 		if (obj instanceof Collection) {
 			Collection<?> collection = (Collection<?>) obj;
 			if(collection == null || collection.isEmpty()) {
-				throw new SmsException(result);
+				throw new EmailException(result);
 			}
 		}
 		if (obj instanceof Map) {
 			Map<?, ?> map = (Map<?, ?>) obj;
 			if(map == null || map.isEmpty()) {
-				throw new SmsException(result);
+				throw new EmailException(result);
 			}
 		}
 	}

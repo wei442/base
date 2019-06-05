@@ -16,10 +16,5 @@ public class SqlMailConstants {
     public static final Integer SQL_MAIL_TYPE_COMMON = 1;
     public static final Integer SQL_MAIL_TYPE_ATTACHMENT = 2;
 
-    //邮件来源，如IMI, ent(法人)等
-    public static final String SQL_MAIL_SOURCE_IMI = "IMI";
-    public static final String SQL_MAIL_SOURCE_ENT = "IMI";
-    public static final String SQL_MAIL_SOURCE_DATASHARE = "DATASHARE";
-
 	/**********************************  邮件数据库常量  **********************************/
 }

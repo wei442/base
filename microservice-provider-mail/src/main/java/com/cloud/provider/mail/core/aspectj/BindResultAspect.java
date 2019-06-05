@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.BindingResult;
 
 import com.cloud.common.enums.mail.MailResultEnum;
-import com.cloud.common.exception.SafeException;
+import com.cloud.common.exception.EmailException;
 
 @Component
 @Aspect
@@ -38,7 +38,7 @@ public class BindResultAspect {
 				BindingResult result = (BindingResult) arg;
 				if (result.hasErrors()) {
 					logger.error(">>>>>> {}.{}() valid params is error msg = {}", clazzName, methodName, result.getFieldError().getDefaultMessage());
-					throw new SafeException(MailResultEnum.PARAMETER_EMPTY.getCode(), result.getFieldError().getDefaultMessage());
+					throw new EmailException(MailResultEnum.PARAMETER_EMPTY.getCode(), result.getFieldError().getDefaultMessage());
 				}
 			}
 		}

@@ -15,12 +15,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cloud.common.constants.CommConstants;
 import com.cloud.common.enums.redis.RedisResultEnum;
 import com.cloud.common.exception.RedisException;
 import com.cloud.provider.redis.base.BaseRestMapResponse;
-import com.cloud.provider.redis.constants.RedisConstants;
 import com.cloud.provider.redis.rest.request.RedisRequest;
 
+import io.swagger.annotations.Api;
 import redis.clients.jedis.Transaction;
 
 /**
@@ -28,6 +29,7 @@ import redis.clients.jedis.Transaction;
  * @author wei.yong
  * @date 2017-09-14
  */
+@Api(tags = "事务")
 @RestController
 @RequestMapping("/redis/transaction")
 public class RedisTransactionController extends BaseController {
@@ -63,7 +65,7 @@ public class RedisTransactionController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【取消事务】(RedisTransactionController-discard)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -95,7 +97,7 @@ public class RedisTransactionController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【执行所有事务块内的命令】(RedisTransactionController-exec)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -127,7 +129,7 @@ public class RedisTransactionController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【标记一个事务块的开始】(RedisTransactionController-multi)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -159,7 +161,7 @@ public class RedisTransactionController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【取消WATCH命令对所有key的监视】(RedisTransactionController-unwatch)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -196,7 +198,7 @@ public class RedisTransactionController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【监视一个key】(RedisTransactionController-watch)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -233,7 +235,7 @@ public class RedisTransactionController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【监视多个key】(RedisTransactionController-watchArray)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}

@@ -16,13 +16,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cloud.common.constants.CommConstants;
 import com.cloud.common.enums.redis.RedisResultEnum;
 import com.cloud.common.exception.RedisException;
 import com.cloud.provider.redis.base.BaseRestMapResponse;
-import com.cloud.provider.redis.constants.RedisConstants;
 import com.cloud.provider.redis.rest.request.RedisRequest;
 import com.cloud.provider.redis.service.IRedisService;
 
+import io.swagger.annotations.Api;
 import redis.clients.jedis.BinaryClient.LIST_POSITION;
 
 /**
@@ -30,6 +31,7 @@ import redis.clients.jedis.BinaryClient.LIST_POSITION;
  * @author wei.yong
  * @date 2017-09-14
  */
+@Api(tags = "列表")
 @RestController
 @RequestMapping("/redis/list")
 public class RedisListController extends BaseController {
@@ -74,7 +76,7 @@ public class RedisListController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【不超时移除并返回列表的第一个元素】(RedisListController-blpop)-返回信息, redisResultResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -111,7 +113,7 @@ public class RedisListController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【不超时移除并返回列表的第一个元素】(RedisListController-blpopArray)-返回信息, redisResultResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -151,7 +153,7 @@ public class RedisListController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【超时移除并返回列表的第一个元素】(RedisListController-blpopTimeout)-返回信息, redisResultResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -191,7 +193,7 @@ public class RedisListController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【超时移除并返回列表的第一个元素】(RedisListController-blpopTimeoutArray)-返回信息, redisResultResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -228,7 +230,7 @@ public class RedisListController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【移除并返回列表的第一个元素】(RedisListController-brpop)-返回信息, redisResultResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -265,7 +267,7 @@ public class RedisListController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:移除并返回列表的第一个元素】(RedisListController-brpopArray)-返回信息, redisResultResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -305,7 +307,7 @@ public class RedisListController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【超时移除并返回列表的第一个元素】(RedisListController-brpopTimeout)-返回信息, redisResultResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -345,7 +347,7 @@ public class RedisListController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【超时移除并返回列表的第一个元素】(RedisListController-timeoutbrpopArray)-返回信息, redisResultResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -388,7 +390,7 @@ public class RedisListController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【移除并返回列表 key的头元素】(RedisListController-brpoplpush)-返回信息, redisResultResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -426,7 +428,7 @@ public class RedisListController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【通过索引获取列表中的元素】(RedisListController-lindex)-返回信息, redisResultResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -479,7 +481,7 @@ public class RedisListController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【列表的元素前或者后插入元素】(RedisListController-linsert)-返回信息, redisResultResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -516,7 +518,7 @@ public class RedisListController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【返回列表的长度】(RedisListController-llen)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -553,7 +555,7 @@ public class RedisListController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【移除并返回列表 key的头元素】(RedisListController-lpop)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -593,7 +595,7 @@ public class RedisListController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【将一个值插入到列表头部】(RedisListController-lpush)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -633,7 +635,7 @@ public class RedisListController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【多个值插入到列表头部】(RedisListController-lpushArray)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -674,7 +676,7 @@ public class RedisListController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【将单个值插入到列表表尾】(RedisListController-lpushx)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -715,7 +717,7 @@ public class RedisListController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【将多个值插入到列表表尾】(RedisListController-lpushxArray)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -758,7 +760,7 @@ public class RedisListController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【列表指定区间内的元素】(RedisListController-lrange)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -801,7 +803,7 @@ public class RedisListController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【根据参数count的值，移除列表中与参数value相等的元素】(RedisListController-lrem)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -844,7 +846,7 @@ public class RedisListController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【通过索引来设置元素的值】(RedisListController-lset)-返回信息, redisResultResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -887,7 +889,7 @@ public class RedisListController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【列表进行修剪】(RedisListController-ltrim)-返回信息, redisResultResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -925,7 +927,7 @@ public class RedisListController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【【移除并返回列表的最后一个元素】(RedisListController-rpop)-返回信息, redisResultResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -965,7 +967,7 @@ public class RedisListController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【列表中的最后一个元素(尾元素)弹出】(RedisListController-rpoplpush)-返回信息, redisResultResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -1006,7 +1008,7 @@ public class RedisListController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【多个值插入到列表尾部(最右边)】(RedisListController-rpush)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -1046,7 +1048,7 @@ public class RedisListController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【多个值插入到列表尾部(最右边)】(RedisListController-rpushArray)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -1087,7 +1089,7 @@ public class RedisListController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【将单个组值插入到列表表尾】(RedisListController-rpushx)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -1128,7 +1130,7 @@ public class RedisListController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【将单个值插入到列表表尾】(RedisListController-rpushxArray)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}

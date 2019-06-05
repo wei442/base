@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.cloud.common.enums.safe.SafeResultEnum;
+import com.cloud.common.enums.rocketmq.RocketmqResultEnum;
 import com.cloud.provider.safe.base.BaseRestMapResponse;
 import com.cloud.provider.safe.enums.FastdfsResultEnum;
 import com.github.tobato.fastdfs.exception.FdfsException;
@@ -44,7 +44,7 @@ public class GlobalExceptionHandler {
 		String message = e.getMessage();
         String exceptionName = e.getClass() == null ? null : e.getClass().getSimpleName();
         String resultMessage = exceptionName == null ? "[" + message+ "]" : exceptionName + "[" + message + "]";
-        return new BaseRestMapResponse(SafeResultEnum.UNKNOWN_ERROR.getCode(), resultMessage);
+        return new BaseRestMapResponse(RocketmqResultEnum.UNKNOWN_ERROR.getCode(), resultMessage);
 	}
 
 }

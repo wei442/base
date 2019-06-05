@@ -13,17 +13,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cloud.common.constants.CommConstants;
 import com.cloud.common.enums.redis.RedisResultEnum;
 import com.cloud.common.exception.RedisException;
 import com.cloud.provider.redis.base.BaseRestMapResponse;
-import com.cloud.provider.redis.constants.RedisConstants;
 import com.cloud.provider.redis.rest.request.RedisRequest;
+
+import io.swagger.annotations.Api;
 
 /**
  * Redis 分布式 lock（锁） RedisLockController
  * @author wei.yong
  * @date 2017-09-14
  */
+@Api(tags = "分布式锁")
 @RestController
 @RequestMapping("/redis/distributedLock")
 public class RedisLockController extends BaseController {
@@ -62,7 +65,7 @@ public class RedisLockController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, flag);
+		redisResponse.put(CommConstants.RESULT, flag);
 		logger.info("===step3:【锁定】(RedisLockController-lock)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -99,7 +102,7 @@ public class RedisLockController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, flag);
+		redisResponse.put(CommConstants.RESULT, flag);
 		logger.info("===step3:【释放锁】(RedisLockController-unlock)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}

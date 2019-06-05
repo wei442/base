@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSONObject;
-import com.cloud.common.constants.RedisConstants;
+import com.cloud.common.constants.CommConstants;
 import com.cloud.provider.rocketmq.base.BaseRestMapResponse;
 import com.cloud.provider.rocketmq.rest.request.RocketmqConsumerRequest;
 import com.cloud.provider.rocketmq.service.IRocketmqConsumerService;
@@ -56,7 +56,7 @@ public class RocketmqConsumerController extends BaseController {
 		logger.info("===step2:【消费消息】(BootRocketmqConsumerController-consumer)-消费消息-返回信息, consumeOrderlyStatus:{}", consumeOrderlyStatus);
 
 		BaseRestMapResponse rocketmqResponse = new BaseRestMapResponse();
-		rocketmqResponse.put(RedisConstants.RESULT, consumeOrderlyStatus);
+		rocketmqResponse.put(CommConstants.RESULT, consumeOrderlyStatus);
 		logger.info("===step3:【消费消息】(BootRocketmqConsumerController-consumer)-返回信息, rocketmqResponse:{}", rocketmqResponse);
 		return rocketmqResponse;
 	}
@@ -84,7 +84,7 @@ public class RocketmqConsumerController extends BaseController {
 		logger.info("===step2:【消费广播消息】(BootRocketmqConsumerController-consumerBroadcast)-消费广播消息-返回信息, consumeConcurrentlyStatus:{}", consumeConcurrentlyStatus);
 
 		BaseRestMapResponse rocketmqResponse = new BaseRestMapResponse();
-		rocketmqResponse.put(RedisConstants.RESULT, consumeConcurrentlyStatus);
+		rocketmqResponse.put(CommConstants.RESULT, consumeConcurrentlyStatus);
 		logger.info("===step3:【消费广播消息】(BootRocketmqConsumerController-consumerBroadcast)-返回信息, rocketmqResponse:{}", rocketmqResponse);
 		return rocketmqResponse;
 	}
@@ -111,7 +111,7 @@ public class RocketmqConsumerController extends BaseController {
 		logger.info("===step2:【消费过滤消息】(BootRocketmqConsumerController-consumeFilter)-消费过滤消-返回信息, consumeConcurrentlyStatus:{}", consumeConcurrentlyStatus);
 
 		BaseRestMapResponse rocketmqResponse = new BaseRestMapResponse();
-		rocketmqResponse.put(RedisConstants.RESULT, consumeConcurrentlyStatus);
+		rocketmqResponse.put(CommConstants.RESULT, consumeConcurrentlyStatus);
 		logger.info("===step3:【消费过滤消息】(BootRocketmqConsumerController-consumeFilter)-返回信息, rocketmqResponse:{}", rocketmqResponse);
 		return rocketmqResponse;
 	}

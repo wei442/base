@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.Map;
 
 import com.cloud.common.enums.ResultEnum;
-import com.cloud.common.exception.SafeException;
+import com.cloud.common.exception.RocketmqException;
 
 /**
  * 校验参数结果
@@ -19,24 +19,24 @@ public class Assert {
 	 */
 	public static void thanOrEqualZreo(Object obj, ResultEnum result) {
 		if(obj == null) {
-			throw new SafeException(result);
+			throw new RocketmqException(result);
 		}
 		if (obj instanceof Integer) {
 			Integer i = (Integer) obj;
 			if(i <= 0) {
-				throw new SafeException(result);
+				throw new RocketmqException(result);
 			}
 		}
 		if (obj instanceof Collection) {
 			Collection<?> collection = (Collection<?>) obj;
 			if(collection == null || collection.isEmpty()) {
-				throw new SafeException(result);
+				throw new RocketmqException(result);
 			}
 		}
 		if (obj instanceof Map) {
 			Map<?, ?> map = (Map<?, ?>) obj;
 			if(map == null || map.isEmpty()) {
-				throw new SafeException(result);
+				throw new RocketmqException(result);
 			}
 		}
 	}

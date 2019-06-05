@@ -30,7 +30,7 @@ public class DataCommandRunner implements CommandLineRunner {
 	@PreDestroy
     public void destory() {
 		long begintime = System.currentTimeMillis();
-    	logger.info("【DataCommandRunner-destroy】-用户数据销毁开始,请等待1秒钟,程序将自动退出!");
+    	logger.info("【DataCommandRunner-destroy】-用户数据销毁开始,请等待2秒钟,程序将自动退出!");
     	try {
     		//睡眠2,000毫秒(2秒)
     		Thread.sleep(2000);

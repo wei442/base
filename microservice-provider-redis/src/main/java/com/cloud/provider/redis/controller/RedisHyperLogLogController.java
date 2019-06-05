@@ -13,17 +13,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cloud.common.constants.CommConstants;
 import com.cloud.common.enums.redis.RedisResultEnum;
 import com.cloud.common.exception.RedisException;
 import com.cloud.provider.redis.base.BaseRestMapResponse;
-import com.cloud.provider.redis.constants.RedisConstants;
 import com.cloud.provider.redis.rest.request.RedisRequest;
+
+import io.swagger.annotations.Api;
 
 /**
  * Redis hyperLogLog（字符串） RedisHyperLogLogController
  * @author wei.yong
  * @date 2017-09-14
  */
+@Api(tags = "HyperLogLog")
 @RestController
 @RequestMapping("/redis/hyperLogLog")
 public class RedisHyperLogLogController extends BaseController {
@@ -67,7 +70,7 @@ public class RedisHyperLogLogController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【一个数量的元素添加到指定的HyperLogLog里面】(RedisHyperLogLogController-pfadd)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -107,7 +110,7 @@ public class RedisHyperLogLogController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【多个数量的元素添加到指定的HyperLogLog里面】(RedisHyperLogLogController-pfadd)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -144,7 +147,7 @@ public class RedisHyperLogLogController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【返回储存在给定键的 HyperLogLog 的近似基数】(RedisHyperLogLogController-pfcount)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -181,7 +184,7 @@ public class RedisHyperLogLogController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【返回储存在给定键的 HyperLogLog 的近似基数】(RedisHyperLogLogController-pfcountArray)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -221,7 +224,7 @@ public class RedisHyperLogLogController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【将一个HyperLogLog合并（merge）为一个HyperLogLog】(RedisHyperLogLogController-pfmerge)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -261,7 +264,7 @@ public class RedisHyperLogLogController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【将多个HyperLogLog合并（merge）为一个HyperLogLog】(RedisHyperLogLogController-pfmergeArray)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}

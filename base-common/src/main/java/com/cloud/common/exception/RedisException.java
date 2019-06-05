@@ -6,7 +6,7 @@ import com.cloud.common.enums.ResultEnum;
  * Redis异常 RedisException
  * @author wei.yong
  */
-public class RedisException extends Exception {
+public class RedisException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
 

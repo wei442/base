@@ -16,12 +16,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cloud.common.constants.CommConstants;
 import com.cloud.common.enums.redis.RedisResultEnum;
 import com.cloud.common.exception.RedisException;
 import com.cloud.provider.redis.base.BaseRestMapResponse;
-import com.cloud.provider.redis.constants.RedisConstants;
 import com.cloud.provider.redis.rest.request.RedisRequest;
 
+import io.swagger.annotations.Api;
 import redis.clients.jedis.ScanResult;
 
 /**
@@ -29,6 +30,7 @@ import redis.clients.jedis.ScanResult;
  * @author wei.yong
  * @date 2017-09-14
  */
+@Api(tags = "集合")
 @RestController
 @RequestMapping("/redis/set")
 public class RedisSetController extends BaseController {
@@ -72,7 +74,7 @@ public class RedisSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【一个成员元素加入集合】(RedisSetController-sadd)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -112,7 +114,7 @@ public class RedisSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【多个成员元素加入集合】(RedisSetController-saddArray)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -149,7 +151,7 @@ public class RedisSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【返回集合元素数量】(RedisSetController-sadd)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -186,7 +188,7 @@ public class RedisSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【返回集合之间差集】(RedisSetController-sdiff)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -223,7 +225,7 @@ public class RedisSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【返回集合之间差集】(RedisSetController-sdiffArray)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -263,7 +265,7 @@ public class RedisSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【集合之间的差集存储在指定的集合】(RedisSetController-sdiffstore)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -301,7 +303,7 @@ public class RedisSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【给定集合之间的差集存储在指定的集合】(RedisSetController-sdiffstoreArray)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -338,7 +340,7 @@ public class RedisSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【返回给定所有给定集合交集】(RedisSetController-sinter)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -375,7 +377,7 @@ public class RedisSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【返回给定所有给定集合交集】(RedisSetController-sinterArray)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -413,7 +415,7 @@ public class RedisSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【给定集合之间的交集存储在指定的集合】(RedisSetController-sdiffstore)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -451,7 +453,7 @@ public class RedisSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【给定集合之间的交集存储在指定的集合中】(RedisSetController-sinterstoreArray)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -489,7 +491,7 @@ public class RedisSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, flag);
+		redisResponse.put(CommConstants.RESULT, flag);
 		logger.info("===step3:【判断成员元素是否是集合的成员】(RedisSetController-sismember)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -526,7 +528,7 @@ public class RedisSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【集合中的所有的成员】(RedisSetController-smembers)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -569,7 +571,7 @@ public class RedisSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【成员移动】(RedisSetController-smove)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -606,7 +608,7 @@ public class RedisSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【移除并返回集合中的一个随机元素】(RedisSetController-spop)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -646,7 +648,7 @@ public class RedisSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【移除并返回集合中的多个随机元素】(RedisSetController-spopCount)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -683,7 +685,7 @@ public class RedisSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【返回集合中的一个随机元素素】(RedisSetController-srandmember)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -723,7 +725,7 @@ public class RedisSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【返回集合中的一个随机元素】(RedisSetController-srandmemberCount)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -763,7 +765,7 @@ public class RedisSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【移除集合中的一个成员元素】(RedisSetController-srem)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -803,7 +805,7 @@ public class RedisSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【移除集合中的多个成员元素】(RedisSetController-sremArray)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -840,7 +842,7 @@ public class RedisSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【返回给定集合的并集】(RedisSetController-sunion)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -877,7 +879,7 @@ public class RedisSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【返回给定集合的并集】(RedisSetController-sunionArray)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -918,7 +920,7 @@ public class RedisSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【给定集合的并集存储指定的集合】(RedisSetController-sunionstore)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -957,7 +959,7 @@ public class RedisSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【给定集合的并集存储指定的集合】(RedisSetController-sunionstoreArray)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -998,7 +1000,7 @@ public class RedisSetController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【迭代集合键中的元素】(RedisSetController-sscan)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}

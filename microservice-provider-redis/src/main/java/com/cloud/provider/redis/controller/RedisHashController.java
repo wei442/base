@@ -17,12 +17,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cloud.common.constants.CommConstants;
 import com.cloud.common.enums.redis.RedisResultEnum;
 import com.cloud.common.exception.RedisException;
 import com.cloud.provider.redis.base.BaseRestMapResponse;
-import com.cloud.provider.redis.constants.RedisConstants;
 import com.cloud.provider.redis.rest.request.RedisRequest;
 
+import io.swagger.annotations.Api;
 import redis.clients.jedis.ScanResult;
 
 /**
@@ -30,6 +31,7 @@ import redis.clients.jedis.ScanResult;
  * @author wei.yong
  * @date 2017-09-14
  */
+@Api(tags = "哈希")
 @RestController
 @RequestMapping("/redis/hash")
 public class RedisHashController extends BaseController {
@@ -73,7 +75,7 @@ public class RedisHashController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【删除哈希表key中的一个字段】(RedisHashController-hdel)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -111,7 +113,7 @@ public class RedisHashController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【删除哈希表key中的多个字段】(RedisHashController-hdelArray)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -151,7 +153,7 @@ public class RedisHashController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, flag);
+		redisResponse.put(CommConstants.RESULT, flag);
 		logger.info("===step3:【查看哈希表的指定字段是否存在】(RedisHashController-hexists)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -191,7 +193,7 @@ public class RedisHashController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【 查看哈希表的指定字段是否存在】(RedisHashController-hexists)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -228,7 +230,7 @@ public class RedisHashController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【返回哈希表中所有的字段和值】(RedisHashController-hgetAll)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -271,7 +273,7 @@ public class RedisHashController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【哈希表中的字段值加上指定增量值】(RedisHashController-hincrBy)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -314,7 +316,7 @@ public class RedisHashController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【哈希表中的字段值加上指定浮点数增量值】(RedisHashController-hincrByFloat)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -351,7 +353,7 @@ public class RedisHashController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【获取哈希表中的所有字段名】(RedisHashController-hkeys)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -388,7 +390,7 @@ public class RedisHashController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【获取哈希表中字段的数量】(RedisHashController-hlen)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -428,7 +430,7 @@ public class RedisHashController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【返回哈希表中一个给定字段的值】(RedisHashController-hmget)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -468,7 +470,7 @@ public class RedisHashController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【返回哈希表中多个给定字段的值】(RedisHashController-hmgetArray)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -508,7 +510,7 @@ public class RedisHashController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【多个字段-值对设置到哈希表】(RedisHashController-hmset))-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -551,7 +553,7 @@ public class RedisHashController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【哈希表中的字段赋值】(RedisHashController-hset)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -594,7 +596,7 @@ public class RedisHashController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【哈希表中的字段赋值】(RedisHashController-hsetnx)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -631,7 +633,7 @@ public class RedisHashController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【返回哈希表所有字段的值】(RedisHashController-hvals)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -671,7 +673,7 @@ public class RedisHashController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【迭代集合键中的元素】(RedisHashController-hscan)--返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}

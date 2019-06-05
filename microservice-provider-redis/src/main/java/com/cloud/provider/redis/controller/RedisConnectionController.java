@@ -13,17 +13,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cloud.common.constants.CommConstants;
 import com.cloud.common.enums.redis.RedisResultEnum;
 import com.cloud.common.exception.RedisException;
 import com.cloud.provider.redis.base.BaseRestMapResponse;
-import com.cloud.provider.redis.constants.RedisConstants;
 import com.cloud.provider.redis.rest.request.RedisRequest;
+
+import io.swagger.annotations.Api;
 
 /**
  * Redis Connection（连接） RedisConnectionController
  * @author wei.yong
  * @date 2017-09-14
  */
+@Api(tags = "连接")
 @RestController
 @RequestMapping("/redis/connection")
 public class RedisConnectionController extends BaseController {
@@ -64,7 +67,7 @@ public class RedisConnectionController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【检测给定的密码和配置文件中的密码是否相符】(RedisConnectionController-auth)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -101,7 +104,7 @@ public class RedisConnectionController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【打印给定的字符串】(RedisConnectionController-echo)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -131,7 +134,7 @@ public class RedisConnectionController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【客户端向 Redis服务器发送一个PING】(RedisConnectionController-ping)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -161,7 +164,7 @@ public class RedisConnectionController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【关闭与当前客户端与redis服务的连接】(RedisConnectionController-quit)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -198,7 +201,7 @@ public class RedisConnectionController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【切换到指定的数据库】(RedisConnectionController-select)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}

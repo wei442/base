@@ -16,12 +16,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cloud.common.constants.CommConstants;
 import com.cloud.common.enums.redis.RedisResultEnum;
 import com.cloud.common.exception.RedisException;
 import com.cloud.provider.redis.base.BaseRestMapResponse;
-import com.cloud.provider.redis.constants.RedisConstants;
 import com.cloud.provider.redis.rest.request.RedisRequest;
 
+import io.swagger.annotations.Api;
 import redis.clients.jedis.GeoCoordinate;
 import redis.clients.jedis.GeoRadiusResponse;
 import redis.clients.jedis.GeoUnit;
@@ -32,6 +33,7 @@ import redis.clients.jedis.params.geo.GeoRadiusParam;
  * @author wei.yong
  * @date 2017-09-14
  */
+@Api(tags = "地理位置")
 @RestController
 @RequestMapping("/redis/geo")
 public class RedisGeoController extends BaseController {
@@ -81,7 +83,7 @@ public class RedisGeoController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【将给定的空间元素（纬度、经度、名字）添加到指定的键里面】(RedisGeoController-geoadd)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -120,7 +122,7 @@ public class RedisGeoController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【将给定的空间元素（纬度、经度、名字）添加到指定的键里面】(RedisGeoController-geoaddMap)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -160,7 +162,7 @@ public class RedisGeoController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【返回所有给定位置元素的位置（经度和纬度）】(RedisGeoController-geopos)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -203,7 +205,7 @@ public class RedisGeoController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【返回两个给定位置之间的距离】(RedisGeoController-geodist)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -257,7 +259,7 @@ public class RedisGeoController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【根据单位返回两个给定位置之间的距离】(RedisGeoController-geodistUnit)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -314,7 +316,7 @@ public class RedisGeoController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【给定的经纬度为中心的距离不超过给定最大距离的所有位置元素】(RedisGeoController-georadius)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -421,7 +423,7 @@ public class RedisGeoController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【给定的经纬度为中心的距离不超过给定最大距离的所有位置元素】(RedisGeoController-georadius)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -473,7 +475,7 @@ public class RedisGeoController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【以给定中心点的距离不超过给定最大距离的所有位置元素】(RedisGeoController-georadiusByMember)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -575,7 +577,7 @@ public class RedisGeoController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【以给定中心点的距离不超过给定最大距离的所有位置元素】(RedisGeoController-georadiusByMember)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -615,7 +617,7 @@ public class RedisGeoController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【一个位置元素的Geohash表】(RedisGeoController-geohash)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -655,7 +657,7 @@ public class RedisGeoController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【多个位置元素的Geohash表】(RedisGeoController-geohashArray)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}

@@ -9,8 +9,8 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BindingResult;
 
-import com.cloud.common.enums.safe.RetSafeAdminResultEnum;
-import com.cloud.common.exception.SafeException;
+import com.cloud.common.enums.rocketmq.RocketmqResultEnum;
+import com.cloud.common.exception.RocketmqException;
 
 @Component
 @Aspect
@@ -38,7 +38,7 @@ public class BindResultAspect {
 				BindingResult result = (BindingResult) arg;
 				if (result.hasErrors()) {
 					logger.error(">>>>>> {}.{}() valid params is error msg = {}", clazzName, methodName, result.getFieldError().getDefaultMessage());
-					throw new SafeException(RetSafeAdminResultEnum.PARAMETER_NULL.getCode(), result.getFieldError().getDefaultMessage());
+					throw new RocketmqException(RocketmqResultEnum.PARAMETER_EMPTY.getCode(), result.getFieldError().getDefaultMessage());
 				}
 			}
 		}

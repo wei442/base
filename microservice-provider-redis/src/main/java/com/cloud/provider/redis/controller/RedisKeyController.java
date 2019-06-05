@@ -16,13 +16,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cloud.common.constants.CommConstants;
 import com.cloud.common.enums.redis.RedisResultEnum;
 import com.cloud.common.exception.RedisException;
 import com.cloud.provider.redis.base.BaseRestMapResponse;
-import com.cloud.provider.redis.constants.RedisConstants;
 import com.cloud.provider.redis.rest.request.RedisRequest;
 import com.cloud.provider.redis.service.IRedisService;
 
+import io.swagger.annotations.Api;
 import redis.clients.jedis.SortingParams;
 
 /**
@@ -30,6 +31,7 @@ import redis.clients.jedis.SortingParams;
  * @author wei.yong
  * @date 2017-09-14
  */
+@Api(tags = "键")
 @RestController
 @RequestMapping("/redis/key")
 public class RedisKeyController extends BaseController {
@@ -74,7 +76,7 @@ public class RedisKeyController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【删除一个key】(RedisKeyController-del)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -111,7 +113,7 @@ public class RedisKeyController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【删除多个key】(RedisKeyController-delArray)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -148,7 +150,7 @@ public class RedisKeyController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【序列化给定key】(RedisKeyController-dump)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -185,7 +187,7 @@ public class RedisKeyController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, flag);
+		redisResponse.put(CommConstants.RESULT, flag);
 		logger.info("===step3:【检查key是否存在】(RedisKeyController-exists)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -222,7 +224,7 @@ public class RedisKeyController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【检查多个key是否存在】(RedisKeyController-existsArray)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -262,7 +264,7 @@ public class RedisKeyController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【设置单个key的过期时间】(RedisKeyController-expire)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -302,7 +304,7 @@ public class RedisKeyController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【设置单个key的过期时间】(RedisKeyController-expireAt)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -339,7 +341,7 @@ public class RedisKeyController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【查找所有符合给定模式的key】(RedisKeyController-keys))-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -388,7 +390,7 @@ public class RedisKeyController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【将key原子性地从当前实例传送到目标实例的指定数据库上】(RedisKeyController-migrate)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -428,7 +430,7 @@ public class RedisKeyController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【将当前数据库的key移动到给定的数据库db当中】(RedisKeyController-move)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -465,7 +467,7 @@ public class RedisKeyController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【移除key的生存时间】(RedisKeyController-persist)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -505,7 +507,7 @@ public class RedisKeyController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【用于设置 key的过期时间(毫秒)】(RedisKeyController-pexpire)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -545,7 +547,7 @@ public class RedisKeyController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【用于设置 key的过期时间(毫秒)】(RedisKeyController-pexpireAt)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -583,7 +585,7 @@ public class RedisKeyController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【毫秒为单位返回key的剩余生存时间】(RedisKeyController-pttl)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -613,7 +615,7 @@ public class RedisKeyController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【当前数据库中随机返回一个key】(RedisKeyController-randomKey)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -653,7 +655,7 @@ public class RedisKeyController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【修改key的名称】(RedisKeyController-rename)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -693,7 +695,7 @@ public class RedisKeyController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【新key不存在时修改key的名称】(RedisKeyController-renamenx)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -736,7 +738,7 @@ public class RedisKeyController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【反序列化给定的序列化值】(RedisKeyController-restore)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -788,7 +790,7 @@ public class RedisKeyController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【返回或保存给定列表、集合、有序集合key中经过排序的元素】(RedisKeyController-sort)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -825,7 +827,7 @@ public class RedisKeyController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, len);
+		redisResponse.put(CommConstants.RESULT, len);
 		logger.info("===step3:【以秒为单位返回key的剩余过期时间】(RedisKeyController-ttl)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}
@@ -862,7 +864,7 @@ public class RedisKeyController extends BaseController {
 		}
 
 		BaseRestMapResponse redisResponse = new BaseRestMapResponse();
-		redisResponse.put(RedisConstants.RESULT, result);
+		redisResponse.put(CommConstants.RESULT, result);
 		logger.info("===step3:【key储存的值的类型】(RedisKeyController-type)-返回信息, redisResponse:{}", redisResponse);
 		return redisResponse;
 	}

@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSONObject;
-import com.cloud.common.constants.RedisConstants;
+import com.cloud.common.constants.CommConstants;
 import com.cloud.provider.rocketmq.base.BaseRestMapResponse;
 import com.cloud.provider.rocketmq.rest.request.RocketmqProducerBatchRequest;
 import com.cloud.provider.rocketmq.rest.request.RocketmqProducerDelayRequest;
@@ -61,7 +61,7 @@ public class RocketmqProducerController extends BaseController {
 		logger.info("===step2:【同步发布消息】(RocketmqProducerController-syncSend)-同步发布消息, sendResult:{}", sendResult);
 
 		BaseRestMapResponse rocketmqResponse = new BaseRestMapResponse();
-		rocketmqResponse.put(RedisConstants.RESULT, sendResult);
+		rocketmqResponse.put(CommConstants.RESULT, sendResult);
 		logger.info("===step3:【同步发布消息】(RocketmqProducerController-syncSend)-返回信息, rocketmqResponse:{}", rocketmqResponse);
 		return rocketmqResponse;
 	}
@@ -87,7 +87,7 @@ public class RocketmqProducerController extends BaseController {
 		logger.info("===step2:【同步顺序发布消息】(RocketmqProducerController-syncSendOrderly)-同步发布消息, sendResult:{}", sendResult);
 
 		BaseRestMapResponse rocketmqResponse = new BaseRestMapResponse();
-		rocketmqResponse.put(RedisConstants.RESULT, sendResult);
+		rocketmqResponse.put(CommConstants.RESULT, sendResult);
 		logger.info("===step3:【同步顺序发布消息】(RocketmqProducerController-syncSendOrderly)-返回信息, rocketmqResponse:{}", rocketmqResponse);
 		return rocketmqResponse;
 	}
@@ -210,7 +210,7 @@ public class RocketmqProducerController extends BaseController {
 		logger.info("===step2:【同步发布消息】(RocketmqProducerController-sendSync)-同步发布消息, sendResult:{}", sendResult);
 
 		BaseRestMapResponse rocketmqResponse = new BaseRestMapResponse();
-		rocketmqResponse.put(RedisConstants.RESULT, sendResult);
+		rocketmqResponse.put(CommConstants.RESULT, sendResult);
 		logger.info("===step3:【批量发送消息】(RocketmqProducerController-sendBatch)-返回信息, rocketmqResponse:{}", rocketmqResponse);
 		return rocketmqResponse;
 	}
@@ -238,7 +238,7 @@ public class RocketmqProducerController extends BaseController {
 		logger.info("===step2:【延时发送消息】(RocketmqProducerController-syncSendDelay)-延时发送消息, sendResult:{}", sendResult);
 
 		BaseRestMapResponse rocketmqResponse = new BaseRestMapResponse();
-		rocketmqResponse.put(RedisConstants.RESULT, sendResult);
+		rocketmqResponse.put(CommConstants.RESULT, sendResult);
 		logger.info("===step3:【延时发送消息】(RocketmqProducerController-syncSendDelay)-返回信息, rocketmqResponse:{}", rocketmqResponse);
 		return rocketmqResponse;
 	}
@@ -267,7 +267,7 @@ public class RocketmqProducerController extends BaseController {
 //		logger.info("===step2:【同步发布消息】(RocketmqProducerController-sendSync)-同步发布消息, sendResult:{}", sendResult);
 
 		BaseRestMapResponse rocketmqResponse = new BaseRestMapResponse();
-//		rocketmqResponse.put(RedisConstants.RESULT, sendResult);
+//		rocketmqResponse.put(CommConstants.RESULT, sendResult);
 		logger.info("===step3:【事务消息】(RocketmqProducerController-sendTransaction)-返回信息, rocketmqResponse:{}", rocketmqResponse);
 		return rocketmqResponse;
 	}
