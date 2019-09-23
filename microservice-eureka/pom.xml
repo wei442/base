@@ -5,13 +5,12 @@
 	<parent>
 		<groupId>com.cloud</groupId>
 		<artifactId>base</artifactId>
-		<version>${revision}</version>
+		<version>0.0.1-SNAPSHOT</version>
+		<!-- 正式版本 
+		<version>0.0.1-RELEASE</version>
+		-->
 	</parent>
 	<artifactId>microservice-eureka</artifactId>
-	<!-- 开发版本  -->
-	<!-- 正式版本  
-	<version>0.0.1-RELEASE</version>
-	-->
 	<name>microservice-eureka</name>
 
     <dependencies>
