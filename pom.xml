@@ -10,7 +10,7 @@
 
 	<groupId>com.cloud</groupId>
 	<artifactId>base</artifactId>
-	<version>${revision}</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<properties>
@@ -20,7 +20,6 @@
 		<java.version>1.8</java.version>
 		<maven.test.skip>true</maven.test.skip>
 		<spring-cloud.version>Greenwich.SR3</spring-cloud.version>
-		<revision>0.0.1-SNAPSHOT</revision>
 	</properties>
 
 	<dependencyManagement>
@@ -80,32 +79,11 @@
 
 	</dependencies>
 
-	<!-- 项目发布至版本仓库中 -->
-	<distributionManagement>
-		<snapshotRepository>
-			<id>snapshots</id>
-			<name>Nexus-snapshots</name>
-			<url>http://10.10.2.104:8082/nexus/content/repositories/snapshots/</url>
-		</snapshotRepository>
-		<repository>
-			<id>releases</id>
-			<name>Nexus-releases</name>
-			<url>http://10.10.2.104:8082/nexus/content/repositories/releases/</url>
-		</repository>
-	</distributionManagement>
-
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<dependencies>
-					<dependency>
-						<groupId>org.springframework</groupId>
-						<artifactId>springloaded</artifactId>
-						<version>1.2.8.RELEASE</version>
-					</dependency>
-				</dependencies>
+       		<plugin>
+			    <groupId>org.springframework.boot</groupId>
+			    <artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
