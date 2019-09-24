@@ -95,6 +95,13 @@
 		<module>microservice-provider-mail</module>
 		<module>microservice-provider-fastdfs</module>
 		<module>microservice-provider-rocketmq</module>
+		
+		<module>eureka</module>
+		<module>redis-provider</module>
+		<module>sms-provider</module>
+		<module>mail-provider</module>
+		<module>fastdfs-provider</module>
+		<module>rocketmq-provider</module>
 		<module>base-common</module>
 	</modules>
 </project>
