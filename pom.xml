@@ -81,21 +81,14 @@
 
 	<build>
 		<plugins>
-       		<plugin>
-			    <groupId>org.springframework.boot</groupId>
-			    <artifactId>spring-boot-maven-plugin</artifactId>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
 
 	<modules>
-		<module>microservice-eureka</module>
-		<module>microservice-provider-redis</module>
-		<module>microservice-provider-sms</module>
-		<module>microservice-provider-mail</module>
-		<module>microservice-provider-fastdfs</module>
-		<module>microservice-provider-rocketmq</module>
-		
 		<module>eureka</module>
 		<module>redis-provider</module>
 		<module>sms-provider</module>
