@@ -26,7 +26,7 @@ import io.swagger.annotations.Api;
 import redis.clients.jedis.GeoCoordinate;
 import redis.clients.jedis.GeoRadiusResponse;
 import redis.clients.jedis.GeoUnit;
-import redis.clients.jedis.params.geo.GeoRadiusParam;
+import redis.clients.jedis.params.GeoRadiusParam;
 
 /**
  * Redis String（字符串） RedisGeoController

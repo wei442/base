@@ -24,7 +24,7 @@ import com.cloud.provider.redis.rest.request.RedisRequest;
 import com.cloud.provider.redis.service.IRedisService;
 
 import io.swagger.annotations.Api;
-import redis.clients.jedis.BinaryClient.LIST_POSITION;
+import redis.clients.jedis.ListPosition;
 
 /**
  * Redis List（列表） RedisListController
@@ -467,9 +467,9 @@ public class RedisListController extends BaseController {
 		long len = 0l;
 		try {
 			if(StringUtils.equalsIgnoreCase(where, "before")) {
-				len = redisService.linsert(key, LIST_POSITION.BEFORE, pivot, value);
+				len = redisService.linsert(key, ListPosition.BEFORE, pivot, value);
 			} else if(StringUtils.equalsIgnoreCase(where, "after")) {
-				len = redisService.linsert(key, LIST_POSITION.AFTER, pivot, value);
+				len = redisService.linsert(key, ListPosition.AFTER, pivot, value);
 			}
 			logger.info("===step2:【列表的元素前或者后插入元素】(RedisListController-linsert)-列表的元素前或者后插入元素-返回信息, len:{}", len);
 		} catch (RedisException e) {

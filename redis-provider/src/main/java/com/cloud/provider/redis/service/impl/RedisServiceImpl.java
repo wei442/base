@@ -1,6 +1,5 @@
 package com.cloud.provider.redis.service.impl;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +14,6 @@ import com.cloud.common.enums.redis.RedisResultEnum;
 import com.cloud.common.exception.RedisException;
 import com.cloud.provider.redis.service.IRedisService;
 
-import redis.clients.jedis.BinaryClient.LIST_POSITION;
 import redis.clients.jedis.BitOP;
 import redis.clients.jedis.GeoCoordinate;
 import redis.clients.jedis.GeoRadiusResponse;
@@ -23,6 +21,7 @@ import redis.clients.jedis.GeoUnit;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPubSub;
 import redis.clients.jedis.JedisSentinelPool;
+import redis.clients.jedis.ListPosition;
 import redis.clients.jedis.ScanParams;
 import redis.clients.jedis.ScanResult;
 import redis.clients.jedis.SortingParams;
@@ -30,9 +29,10 @@ import redis.clients.jedis.Transaction;
 import redis.clients.jedis.Tuple;
 import redis.clients.jedis.ZParams;
 import redis.clients.jedis.exceptions.JedisException;
-import redis.clients.jedis.params.geo.GeoRadiusParam;
-import redis.clients.jedis.params.sortedset.ZAddParams;
-import redis.clients.jedis.params.sortedset.ZIncrByParams;
+import redis.clients.jedis.params.GeoRadiusParam;
+import redis.clients.jedis.params.SetParams;
+import redis.clients.jedis.params.ZAddParams;
+import redis.clients.jedis.params.ZIncrByParams;
 
 @Service
 public class RedisServiceImpl implements IRedisService {
@@ -1067,7 +1067,7 @@ public class RedisServiceImpl implements IRedisService {
 	 * 用于设置给定 key的值。如果 key 已经存储其他值， SET 就覆写旧值，且无视类型
 	 * @param key
 	 * @param value
-	 * @param nxxx
+	 * @param params
 	 * @return String
 	 * @throws RedisException
 	 * 在 Redis 2.6.12 以前版本， SET 命令总是返回 OK
@@ -1078,47 +1078,13 @@ public class RedisServiceImpl implements IRedisService {
 	 * XX ：只在键已经存在时，才对键进行设置操作。
 	 */
 	@Override
-	public String set(String key, String value, String nxxx) throws RedisException {
-		logger.info("(RedisService-set)-用于设置给定 key的值-传入参数, key:{}, value:{}, nxxx:{}", key, value, nxxx);
+	public String set(String key, String value, SetParams params) throws RedisException {
+		logger.info("(RedisService-set)-用于设置给定 key的值-传入参数, key:{}, value:{}, params:{}", key, value, params);
 		String result = null;
 		Jedis jedis = null;
 		try {
 			jedis = jedisSentinelPool.getResource();
-			result = jedis.set(key, value, nxxx);
-		} catch (JedisException e) {
-			logger.error("[RedisService.set:失败], Exception={}, message={}", e, e.getMessage());
-			throw new RedisException(RedisResultEnum.REDIS_ERROR);
-		} finally {
-			//返还到连接池
-			close(jedis);
-		}
-		return result;
-	}
-
-	/**
-	 * 用于设置给定 key的值。如果 key 已经存储其他值， SET 就覆写旧值，且无视类型
-	 * @param key
-	 * @param value
-	 * @param nxxx
-	 * @param expx
-	 * @param time
-	 * @return String
-	 * @throws RedisException
-	 * 在 Redis 2.6.12 以前版本， SET 命令总是返回 OK
-	 * 从 Redis 2.6.12 版本开始， SET 在设置操作成功完成时，才返回 OK
-	 * EX second ：设置键的过期时间为 second 秒。 SET key value EX second 效果等同于 SETEX key second value 。
-	 * PX millisecond ：设置键的过期时间为 millisecond 毫秒。 SET key value PX millisecond 效果等同于 PSETEX key millisecond value 。
-	 * NX ：只在键不存在时，才对键进行设置操作。 SET key value NX 效果等同于 SETNX key value 。
-	 * XX ：只在键已经存在时，才对键进行设置操作。
-	 */
-	@Override
-	public String set(String key, String value, String nxxx, String expx, long time) throws RedisException {
-		logger.info("(RedisService-set)-用于设置给定 key的值-传入参数, key:{}, value:{}, nxxx:{}, expx:{}, time:{}", key, value, nxxx, expx, time);
-		String result = null;
-		Jedis jedis = null;
-		try {
-			jedis = jedisSentinelPool.getResource();
-			result = jedis.set(key, value, nxxx, expx, time);
+			result = jedis.set(key, value, params);
 		} catch (JedisException e) {
 			logger.error("[RedisService.set:失败], Exception={}, message={}", e, e.getMessage());
 			throw new RedisException(RedisResultEnum.REDIS_ERROR);
@@ -1817,7 +1783,7 @@ public class RedisServiceImpl implements IRedisService {
 	 * @return long 如果命令执行成功，返回插入操作完成之后，列表的长度。 如果没有找到指定元素 ，返回 -1 。 如果 key 不存在或为空列表，返回 0 。
 	 */
 	@Override
-	public long linsert(String key, LIST_POSITION where, String pivot, String value) throws RedisException {
+	public long linsert(String key, ListPosition where, String pivot, String value) throws RedisException {
 		logger.info("(RedisService-linsert)-列表的元素前或者后插入元素-传入参数, key:{}, where:{}, pivot:{}, value:{}", key, where, pivot, value);
 		long len = 0l;
 		Jedis jedis = null;
@@ -4543,12 +4509,8 @@ public class RedisServiceImpl implements IRedisService {
 	 */
 	@Override
 	public void closeTransaction(Transaction transaction) {
-		try {
-			if(transaction != null) {
-				transaction.close();
-			}
-		} catch (IOException e) {
-			logger.error("[RedisService.close:失败], Exception={}, message={}", e, e.getMessage());
+		if(transaction != null) {
+			transaction.close();
 		}
 	}
 

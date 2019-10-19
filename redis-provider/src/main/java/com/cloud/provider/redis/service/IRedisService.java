@@ -6,22 +6,23 @@ import java.util.Set;
 
 import com.cloud.common.exception.RedisException;
 
-import redis.clients.jedis.BinaryClient.LIST_POSITION;
 import redis.clients.jedis.BitOP;
 import redis.clients.jedis.GeoCoordinate;
 import redis.clients.jedis.GeoRadiusResponse;
 import redis.clients.jedis.GeoUnit;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPubSub;
+import redis.clients.jedis.ListPosition;
 import redis.clients.jedis.ScanParams;
 import redis.clients.jedis.ScanResult;
 import redis.clients.jedis.SortingParams;
 import redis.clients.jedis.Transaction;
 import redis.clients.jedis.Tuple;
 import redis.clients.jedis.ZParams;
-import redis.clients.jedis.params.geo.GeoRadiusParam;
-import redis.clients.jedis.params.sortedset.ZAddParams;
-import redis.clients.jedis.params.sortedset.ZIncrByParams;
+import redis.clients.jedis.params.GeoRadiusParam;
+import redis.clients.jedis.params.SetParams;
+import redis.clients.jedis.params.ZAddParams;
+import redis.clients.jedis.params.ZIncrByParams;
 
 public interface IRedisService {
 
@@ -381,7 +382,7 @@ public interface IRedisService {
 	 * 用于设置给定 key的值。如果 key 已经存储其他值， SET 就覆写旧值，且无视类型
 	 * @param key
 	 * @param value
-	 * @param nxxx
+	 * @param params
 	 * @return String
 	 * @throws RedisException
 	 * 在 Redis 2.6.12 以前版本， SET 命令总是返回 OK
@@ -391,25 +392,7 @@ public interface IRedisService {
 	 * NX ：只在键不存在时，才对键进行设置操作。 SET key value NX 效果等同于 SETNX key value 。
 	 * XX ：只在键已经存在时，才对键进行设置操作。
 	 */
-	public String set(String key, String value, String nxxx) throws RedisException;
-
-	/**
-	 * 用于设置给定 key的值。如果 key 已经存储其他值， SET 就覆写旧值，且无视类型
-	 * @param key
-	 * @param value
-	 * @param nxxx
-	 * @param expx
-	 * @param time
-	 * @return String
-	 * @throws RedisException
-	 * 在 Redis 2.6.12 以前版本， SET 命令总是返回 OK
-	 * 从 Redis 2.6.12 版本开始， SET 在设置操作成功完成时，才返回 OK
-	 * EX second ：设置键的过期时间为 second 秒。 SET key value EX second 效果等同于 SETEX key second value 。
-	 * PX millisecond ：设置键的过期时间为 millisecond 毫秒。 SET key value PX millisecond 效果等同于 PSETEX key millisecond value 。
-	 * NX ：只在键不存在时，才对键进行设置操作。 SET key value NX 效果等同于 SETNX key value 。
-	 * XX ：只在键已经存在时，才对键进行设置操作。
-	 */
-	public String set(String key, String value, String nxxx, String expx, long time) throws RedisException;
+	public String set(String key, String value, SetParams params) throws RedisException;
 
 	/**
 	 * 对key所储存的字符串值，设置或清除指定偏移量上的位(bit)
@@ -654,7 +637,7 @@ public interface IRedisService {
 	 * @param value
 	 * @return long 如果命令执行成功，返回插入操作完成之后，列表的长度。 如果没有找到指定元素 ，返回 -1 。 如果 key 不存在或为空列表，返回 0 。
 	 */
-	public long linsert(String key, LIST_POSITION where, String pivot, String value) throws RedisException;
+	public long linsert(String key, ListPosition where, String pivot, String value) throws RedisException;
 
 	/**
 	 * 用于返回列表的长度。 如果列表 key 不存在，则 key 被解释为一个空列表，返回 0 。 如果 key 不是列表类型，返回一个错误。
