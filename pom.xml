@@ -96,5 +96,6 @@
 		<module>fastdfs-provider</module>
 		<module>rocketmq-provider</module>
 		<module>base-common</module>
+		
 	</modules>
 </project>
