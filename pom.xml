@@ -95,7 +95,12 @@
 		<module>mail-provider</module>
 		<module>fastdfs-provider</module>
 		<module>rocketmq-provider</module>
-		<module>base-common</module>
 		
+		<module>provider-fastdfs</module>
+		<module>provider-rocketmq</module>
+		<module>provider-redis</module>
+		<module>provider-mail</module>
+		<module>provider-sms</module>
+		<module>base-common</module>
 	</modules>
 </project>
